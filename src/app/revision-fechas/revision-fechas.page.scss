@@ -1,0 +1,181 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Aseguramos que el body ocupe toda la pantalla */
+  display: flex;
+  flex-direction: column; /* Todo en columna */
+}
+
+.container {
+  width: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Asegura que ocupe toda la altura */
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #dc1436;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10; /* Mantener el header encima */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.tabs {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.tab {
+  background-color: #dc1436;
+  color: white;
+  border: none;
+  padding: 0.5rem 2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.products-list {
+  flex-grow: 1; /* Esto hace que los productos ocupen el espacio restante */
+  overflow-y: auto; /* Asegura que se pueda hacer scroll cuando el contenido excede la altura */
+  padding: 1rem;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
+}
+
+.product-item {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.product-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-name {
+  font-weight: bold;
+  color: black;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 1rem;
+  color: black;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.2rem;
+}
+
+input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+  background-color: #d3d3d3;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  appearance: none;
+  border: 2px solid #bbb;
+}
+
+input[type="checkbox"]:checked {
+  background-color: white;
+}
+
+input[type="checkbox"]:checked::before {
+  content: '\2713';
+  position: absolute;
+  left: 6px;
+  top: -1px;
+  color: black;
+  font-size: 18px;
+}
+
+.dates {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 0.9rem;
+  color: black;
+  gap: 1rem;
+  font-weight: bold;
+}
+
+.update-btn {
+  background-color: #f0f0f0;
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: black;
+}
+
+.update-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.25rem;
+  }
+
+  .tabs {
+    margin: 0.5rem 0;
+  }
+
+  .tab {
+    font-size: 1rem;
+    padding: 0.4rem 1.8rem;
+  }
+
+  .product-item {
+    padding: 0.8rem;
+  }
+
+  .product-info {
+    gap: 1.5rem;
+  }
+
+  .checkbox-group {
+    gap: 2rem;
+  }
+
+  .dates {
+    font-size: 1rem;
+  }
+
+  .update-btn {
+    font-size: 0.8rem;
+  }
+}
