@@ -1,40 +1,36 @@
 <header>
-  <h1>Revision de fechas</h1>
+  <h1>Revisión de Fechas</h1>
 </header>
 
 <div class="container">
-
   <div class="tabs">
     <button class="tab active">Pendientes</button>
   </div>
 
   <div class="products-list">
-    <div class="product-item" *ngFor="let product of products">
+    <div class="product-item" *ngFor="let product of products$ | async">
       <div class="product-info">
-        <!-- Nombre del producto y checkboxes en la misma fila -->
         <div class="product-details">
           <span class="product-name">{{ product.name }}</span>
           <div class="checkbox-group">
             <label>
               TM
-              <input type="checkbox" [(ngModel)]="product.tm">
+              <input type="checkbox" [(ngModel)]="product.tm" (change)="updateProduct(product)">
             </label>
             <label>
               TV
-              <input type="checkbox" [(ngModel)]="product.tv">
+              <input type="checkbox" [(ngModel)]="product.tv" (change)="updateProduct(product)">
             </label>
           </div>
         </div>
 
-        <!-- Fechas -->
         <div class="dates">
-          <span>{{ product.startDate | date: 'dd/MM/yyyy' }}</span>
-          <span>{{ product.endDate | date: 'dd/MM/yyyy' }}</span>
+          <input type="date" [(ngModel)]="product.startDate" [min]="todayDate">
+          <input type="date" [(ngModel)]="product.endDate" [min]="todayDate">
         </div>
-
-        <!-- Botón debajo de las fechas -->
+        
         <button class="update-btn" (click)="updateProduct(product)">
-          Actualizar
+          Actualizar fecha
         </button>
       </div>
     </div>

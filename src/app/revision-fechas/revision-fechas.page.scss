@@ -119,12 +119,57 @@ input[type="checkbox"]:checked::before {
 
 .dates {
   display: flex;
-  justify-content: space-evenly;
-  font-size: 0.9rem;
+  justify-content: center; /* Centra los inputs horizontalmente */
+  align-items: center; /* Centra los inputs verticalmente */
+  font-size: 0.85rem; /* Tamaño de fuente ligeramente más pequeño */
   color: black;
   gap: 1rem;
   font-weight: bold;
 }
+
+.dates input[type="date"] {
+  background-color: white; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde gris claro */
+  padding: 0.5rem; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  width: 150px; /* Ancho adecuado para los inputs */
+  box-sizing: border-box; /* Asegura que el padding y border se incluyan en el ancho total */
+  font-size: 0.85rem; /* Reducir tamaño de fuente */
+}
+
+/* Ajustes para el icono del calendario con espacio */
+.dates input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: black; /* Cambia el color del icono del calendario */
+  border-radius: 50%; /* Redondea el icono */
+  padding: 3px; /* Espacio adicional alrededor del icono */
+  margin-left: -5px; /* Espacio entre la fecha y el icono del calendario */
+}
+
+.dates input[type="date"]:focus {
+  outline: none; /* Elimina el contorno predeterminado */
+  border-color: #007bff; /* Color del borde cuando está enfocado */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Sombra azul cuando tiene foco */
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .dates {
+    gap: 0.5rem; /* Reduce el espacio entre los inputs */
+  }
+
+  .dates input[type="date"] {
+    width: 130px; /* Ancho moderado para pantallas medianas */
+  }
+}
+
+@media (max-width: 480px) {
+  .dates input[type="date"] {
+    width: 120px; /* Ancho reducido para pantallas más pequeñas */
+  }
+}
+
+
+
 
 .update-btn {
   background-color: #f0f0f0;
