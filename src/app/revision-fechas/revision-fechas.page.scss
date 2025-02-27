@@ -32,6 +32,98 @@ header h1 {
   font-size: 1.5rem;
 }
 
+/*Caliente y Frio*/
+h2 {
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background-color: #dc1436;
+}
+
+h2:first-of-type { /* Para "Caliente" */
+  color: White; /* Rojo para caliente */
+}
+
+
+
+/* Contenedor del switch */
+.filter-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Espaciado entre el switch y el texto */
+  margin: 5px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Estilo del switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 34px;
+}
+
+/* Oculta el checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Estilo del slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+/* Botón del switch */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Estilo cuando está activado */
+.switch input:checked + .slider {
+  background-color: #dc1436;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(36px);
+}
+
+/* Redondeado extra */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+/* Texto de estado */
+.status-text {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+
+
 .tabs {
   margin: 1rem 0;
   text-align: center;

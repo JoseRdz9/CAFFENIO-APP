@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonHeader, IonToolbar } from "@ionic/angular/standalone";
 import { FirebaseService, Product } from '../common/services/firestore.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Timestamp } from 'firebase/firestore';
 
 @Component({
@@ -15,30 +15,71 @@ import { Timestamp } from 'firebase/firestore';
   styleUrls: ['./revision-fechas.page.scss']
 })
 export class RevisionFechasPage {
-  products$: Observable<Product[]>;
+  groupedProducts$: Observable<{ [key: string]: Product[] }> = new Observable<{ [key: string]: Product[] }>();
   todayDate: string;
+  showPending: boolean = false;
 
   private firebaseService = inject(FirebaseService);
 
   constructor() {
-    this.todayDate = this.getTodayDate();  // Asigna el valor de la fecha mínima
-    this.products$ = this.firebaseService.getProducts().pipe(
-      map(products => products.map(product => ({
-        ...product,
-        startDate: product.startDate instanceof Timestamp 
-          ? this.formatDate(product.startDate.toDate()) 
-          : product.startDate ? this.formatDate(product.startDate) : '',
-        endDate: product.endDate instanceof Timestamp 
-          ? this.formatDate(product.endDate.toDate()) 
-          : product.endDate ? this.formatDate(product.endDate) : ''
-      })))
-    );    
+    this.todayDate = this.getTodayDate();
+    this.loadAllProducts();
   }
 
-  // Método para obtener la fecha de hoy en formato YYYY-MM-DD
-  public getTodayDate(): string {
-    const today = new Date();
-    return today.toISOString().split('T')[0]; // Retorna la fecha en formato YYYY-MM-DD
+  toggleFilter() {
+    if (this.showPending) {
+      this.filterUpcomingProducts();
+    } else {
+      this.loadAllProducts();
+    }
+  }
+
+  private loadAllProducts() {
+    this.groupedProducts$ = this.firebaseService.getProducts().pipe(
+      map(products => {
+        const formattedProducts = products.map(product => ({
+          ...product,
+          startDate: product.startDate instanceof Timestamp 
+            ? this.formatDate(product.startDate.toDate()) 
+            : product.startDate ? this.formatDate(product.startDate) : '',
+          endDate: product.endDate instanceof Timestamp 
+            ? this.formatDate(product.endDate.toDate()) 
+            : product.endDate ? this.formatDate(product.endDate) : ''
+        }));
+        return this.groupProductsBySection(formattedProducts);
+      })
+    );
+  }
+
+  private filterUpcomingProducts() {
+    this.groupedProducts$ = this.firebaseService.getProducts().pipe(
+      map(products => {
+        const today = new Date();
+        const filteredProducts = products
+          .map(product => ({
+            ...product,
+            startDate: product.startDate instanceof Timestamp 
+              ? this.formatDate(product.startDate.toDate()) 
+              : product.startDate ? this.formatDate(product.startDate) : '',
+            endDate: product.endDate instanceof Timestamp 
+              ? this.formatDate(product.endDate.toDate()) 
+              : product.endDate ? this.formatDate(product.endDate) : ''
+          }))
+          .filter(product => {
+            const endDate = new Date(product.endDate);
+            return endDate.getTime() - today.getTime() <= 2 * 24 * 60 * 60 * 1000;
+          });
+
+        return this.groupProductsBySection(filteredProducts);
+      })
+    );
+  }
+
+  private groupProductsBySection(products: Product[]): { [key: string]: Product[] } {
+    return products.reduce((acc, product) => {
+      (acc[product.section] = acc[product.section] || []).push(product);
+      return acc;
+    }, {} as { [key: string]: Product[] });
   }
 
   updateProduct(product: Product) {
@@ -59,10 +100,11 @@ export class RevisionFechasPage {
       .catch(error => console.error('Error al actualizar:', error));
   }
 
-  // Función para convertir fecha a formato YYYY-MM-DD
+  private getTodayDate(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+
   private formatDate(date: Date | string): string {
-    if (!date) return '';
-    const d = new Date(date);
-    return isNaN(d.getTime()) ? '' : d.toISOString().split('T')[0];
+    return date ? new Date(date).toISOString().split('T')[0] : '';
   }
 }

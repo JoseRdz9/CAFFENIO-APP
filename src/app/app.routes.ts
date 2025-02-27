@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-// import { DbConnectionComponent } from './db-connection/db-connection.component';  // Asegúrate de que la ruta sea correcta
 
 export const routes: Routes = [
   {

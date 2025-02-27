@@ -3,35 +3,73 @@
 </header>
 
 <div class="container">
-  <div class="tabs">
-    <button class="tab active">Pendientes</button>
+  <div class="filter-toggle">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="showPending" (change)="toggleFilter()">
+      <span class="slider round"></span>
+    </label>
   </div>
 
-  <div class="products-list">
-    <div class="product-item" *ngFor="let product of products$ | async">
-      <div class="product-info">
-        <div class="product-details">
-          <span class="product-name">{{ product.name }}</span>
-          <div class="checkbox-group">
-            <label>
-              TM
-              <input type="checkbox" [(ngModel)]="product.tm" (change)="updateProduct(product)">
-            </label>
-            <label>
-              TV
-              <input type="checkbox" [(ngModel)]="product.tv" (change)="updateProduct(product)">
-            </label>
+  <div class="barista-section" *ngIf="(groupedProducts$ | async) as groupedProducts">
+    <!-- Apartado de Caliente -->
+    <div class="barista-category" *ngIf="groupedProducts['Caliente']">
+      <h2>Caliente</h2>
+      <div class="product-item" *ngFor="let product of groupedProducts['Caliente']">
+        <div class="product-info">
+          <div class="product-details">
+            <span class="product-name">{{ product.name }}</span>
+            <div class="checkbox-group">
+              <label>
+                TM
+                <input type="checkbox" [(ngModel)]="product.tm" (change)="updateProduct(product)">
+              </label>
+              <label>
+                TV
+                <input type="checkbox" [(ngModel)]="product.tv" (change)="updateProduct(product)">
+              </label>
+            </div>
           </div>
-        </div>
 
-        <div class="dates">
-          <input type="date" [(ngModel)]="product.startDate" [min]="todayDate">
-          <input type="date" [(ngModel)]="product.endDate" [min]="todayDate">
+          <div class="dates">
+            <input type="date" [(ngModel)]="product.startDate" [min]="todayDate">
+            <input type="date" [(ngModel)]="product.endDate" [min]="todayDate">
+          </div>
+          
+          <button class="update-btn" (click)="updateProduct(product)">
+            Actualizar fecha
+          </button>
         </div>
-        
-        <button class="update-btn" (click)="updateProduct(product)">
-          Actualizar fecha
-        </button>
+      </div>
+    </div>
+
+    <!-- Apartado de Frio -->
+    <div class="barista-category" *ngIf="groupedProducts['Frio']">
+      <h2>Frio</h2>
+      <div class="product-item" *ngFor="let product of groupedProducts['Frio']">
+        <div class="product-info">
+          <div class="product-details">
+            <span class="product-name">{{ product.name }}</span>
+            <div class="checkbox-group">
+              <label>
+                TM
+                <input type="checkbox" [(ngModel)]="product.tm" (change)="updateProduct(product)">
+              </label>
+              <label>
+                TV
+                <input type="checkbox" [(ngModel)]="product.tv" (change)="updateProduct(product)">
+              </label>
+            </div>
+          </div>
+
+          <div class="dates">
+            <input type="date" [(ngModel)]="product.startDate" [min]="todayDate">
+            <input type="date" [(ngModel)]="product.endDate" [min]="todayDate">
+          </div>
+          
+          <button class="update-btn" (click)="updateProduct(product)">
+            Actualizar fecha
+          </button>
+        </div>
       </div>
     </div>
   </div>

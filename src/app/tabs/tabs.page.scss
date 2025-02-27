@@ -1,1 +1,16 @@
+ion-header,
+ion-toolbar {
+  background-color: white !important; /* Asegura que la barra de herramientas sea blanca */
+}
 
+ion-content {
+  --background: white !important; /* Asegura que el fondo del contenido sea blanco */
+}
+
+ion-tabs {
+  --background: white !important; /* Asegura que el fondo de los tabs sea blanco */
+}
+
+ion-tab-bar {
+  --background: white !important; /* Asegura que el fondo de la barra de tabs sea blanco */
+}
