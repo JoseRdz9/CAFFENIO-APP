@@ -18,6 +18,8 @@ export class RevisionFechasPage {
   groupedProducts$: Observable<{ [key: string]: Product[] }> = new Observable<{ [key: string]: Product[] }>();
   todayDate: string;
   showPending: boolean = false;
+  isLoading: boolean = false;
+
 
   private firebaseService = inject(FirebaseService);
 
@@ -84,7 +86,8 @@ export class RevisionFechasPage {
 
   updateProduct(product: Product) {
     console.log('Actualizando producto:', product);
-    
+    this.isLoading = true; // Mostrar spinner
+  
     const updatedProduct = {
       ...product,
       startDate: product.startDate instanceof Timestamp 
@@ -94,11 +97,19 @@ export class RevisionFechasPage {
         ? product.endDate.toDate() 
         : product.endDate ? new Date(product.endDate) : null
     };
-
+  
     this.firebaseService.updateProductInFirebase(updatedProduct)
-      .then(() => console.log('Producto actualizado correctamente'))
-      .catch(error => console.error('Error al actualizar:', error));
+      .then(() => {
+        console.log('Producto actualizado correctamente');
+      })
+      .catch(error => {
+        console.error('Error al actualizar:', error);
+      })
+      .finally(() => {
+        this.isLoading = false; // Ocultar spinner
+      });
   }
+  
 
   private getTodayDate(): string {
     return new Date().toISOString().split('T')[0];

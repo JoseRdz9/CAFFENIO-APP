@@ -2,6 +2,11 @@
   <h1>Revisión de Fechas</h1>
 </header>
 
+<div class="loading-overlay" *ngIf="isLoading">
+  <div class="spinner"></div>
+</div>
+
+
 <div class="container">
   <div class="filter-toggle">
     <label class="switch">
