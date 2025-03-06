@@ -3,6 +3,15 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'login',  // Redirige a login al inicio
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: '',
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
   {
@@ -12,9 +21,5 @@ export const routes: Routes = [
   {
     path: 'micuenta',
     loadComponent: () => import('./micuenta/micuenta.component').then(m => m.MicuentaComponent)
-  },
-  {
-    path: 'login',  // Nueva ruta para el login
-    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
   }
 ];
