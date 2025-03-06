@@ -1,0 +1,51 @@
+<div class="mi-cuenta-container">
+  <div class="header">
+    <img src="assets/img/Caffenio-drive.jpeg" alt="Fondo" class="background-img">
+    <h2 class="titulo">Mi Perfil</h2>
+  </div>
+
+  <!-- Pantalla de carga -->
+  <div *ngIf="cargando" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Usamos async pipe para la suscripción al Observable -->
+  <div *ngIf="empleado$ | async as empleado" class="profile-container">
+    <div class="profile-pic">
+      <img [src]="empleado.imagenUrl || 'assets/img/Caffenio-Profile.jpeg'" alt="Foto del empleado">
+      <div class="edit-icon">&#9998;</div>
+    </div>
+    <div class="profile-info">
+      <h2 class="nombre">{{ empleado.nombre }}</h2>
+      <div class="underline"></div>
+      <p class="apellido">{{ empleado.apellido }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="empleado$ | async as empleado" class="stats-box">
+    <div class="stat">
+      <strong>100</strong>
+      <p>Tareas a realizar</p>
+    </div>
+    <div class="stat">
+      <strong>{{ empleado.noempleado }}</strong>
+      <p>Num. empleado</p>
+    </div>
+  </div>
+
+  <div *ngIf="empleado$ | async as empleado" class="info-box">
+    <p><strong>Teléfono:</strong> {{ empleado.telefono }}</p>
+  </div>
+
+  <div class="modo-claro">
+    <p>Modo claro</p>
+    <label class="switch">
+      <input type="checkbox" [checked]="modoClaro" (change)="toggleModoClaro()">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <button class="cerrar-sesion" (click)="cerrarSesion()">Cerrar sesión</button>
+
+
+</div>

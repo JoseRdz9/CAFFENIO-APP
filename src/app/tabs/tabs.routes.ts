@@ -13,8 +13,9 @@ export const routes: Routes = [
       },
       {
         path: 'tab2',
-        loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+        // Redirige a 'micuenta'
+        redirectTo: '/micuenta', 
+        pathMatch: 'full',
       },
       {
         path: '',
@@ -22,6 +23,10 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
     ],
+  },
+  {
+    path: 'micuenta', 
+    loadComponent: () => import('../micuenta/micuenta.component').then(m => m.MicuentaComponent)
   },
   {
     path: '',

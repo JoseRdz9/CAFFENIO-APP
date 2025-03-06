@@ -1,0 +1,79 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff; /* Fondo blanco */
+    padding: 20px;
+}
+
+.login-title {
+    font-size: 1.6rem;
+    color: black; /* Título color negro */
+    margin-bottom: 0.5rem;
+}
+
+.sub-title {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: black; /* Color de las etiquetas en negro */
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 25px; /* Bordes redondeados */
+    border: 1px solid black;
+    background-color: #fff; /* Fondo blanco para los inputs */
+    color: #333; /* Color del texto en los inputs */
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra negra */
+    transition: box-shadow 0.3s ease; /* Transición suave para la sombra */
+}
+
+.form-control:focus {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Efecto de sombra más fuerte al hacer foco */
+    border-color: #3880ff; /* Cambio de borde al hacer foco */
+    outline: none; /* Quitar el borde de enfoque predeterminado */
+}
+
+button.btn-primary {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #dc1436;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button.btn-primary:hover {
+    background-color: #3171e0; /* Color de hover */
+}
+
+/* Estilos generales para Toastify */
+.toastify {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
