@@ -1,26 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; // Importa Router
 import { EmpleadosService } from '../common/services/empleados.service';
 import { AuthService } from '../common/services/auth.service';
 import { User } from 'firebase/auth';
-import { Observable } from 'rxjs'; 
+import { Observable } from 'rxjs';
 import { switchMap, shareReplay, tap } from 'rxjs/operators';
-import { CommonModule } from '@angular/common'; // Importar CommonModule
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-micuenta',
-  standalone: true, // Especifica que el componente es standalone
+  standalone: true,
   templateUrl: './micuenta.component.html',
   styleUrls: ['./micuenta.component.scss'],
-  imports: [CommonModule],  // Asegúrate de incluir CommonModule aquí
+  imports: [CommonModule],
 })
 export class MicuentaComponent implements OnInit {
-  empleado$: Observable<any> | null = null; // Cambié a un observable para optimizar las solicitudes
+  empleado$: Observable<any> | null = null;
   modoClaro: boolean = false;
-  cargando: boolean = true; // Variable para manejar el estado de carga
+  cargando: boolean = true;
 
   constructor(
     private empleadosService: EmpleadosService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router // Inyectar Router aquí
   ) {}
 
   ngOnInit(): void {
@@ -32,24 +34,24 @@ export class MicuentaComponent implements OnInit {
               const empleadoLogueado = empleados.find(emp => emp.id === user.uid);
               return empleadoLogueado ? [empleadoLogueado] : [];
             }),
-            shareReplay(1) // Evita hacer la solicitud más de una vez
+            shareReplay(1)
           );
         }
         return [];
       }),
-      tap(() => this.cargando = false) // Al completar, cambia el estado de 'cargando'
+      tap(() => this.cargando = false)
     );
+  }
+
+  volverAInicio() {
+    this.router.navigate(['/']); // Redirigir a la ruta principal
   }
 
   toggleModoClaro() {
     this.modoClaro = !this.modoClaro;
-    // Agrega lógica para aplicar el tema claro u oscuro
   }
 
-  // Método para cerrar sesión
   cerrarSesion() {
-    this.authService.signOut().subscribe(() => {
-      // Puedes agregar algún mensaje o lógica adicional si es necesario
-    });
+    this.authService.signOut().subscribe(() => {});
   }
 }

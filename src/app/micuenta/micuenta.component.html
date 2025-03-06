@@ -1,7 +1,12 @@
 <div class="mi-cuenta-container">
   <div class="header">
     <img src="assets/img/Caffenio-drive.jpeg" alt="Fondo" class="background-img">
-    <h2 class="titulo">Mi Perfil</h2>
+    <div class="header-content">
+      <button class="back-button" (click)="volverAInicio()">
+        <img src="assets/icon/icons-back.png" alt="Regresar">
+      </button>
+      <h2 class="titulo">Mi Perfil</h2>
+    </div>
   </div>
 
   <!-- Pantalla de carga -->
@@ -9,7 +14,7 @@
     <div class="spinner"></div>
   </div>
 
-  <!-- Usamos async pipe para la suscripción al Observable -->
+  <!-- Perfil del usuario -->
   <div *ngIf="empleado$ | async as empleado" class="profile-container">
     <div class="profile-pic">
       <img [src]="empleado.imagenUrl || 'assets/img/Caffenio-Profile.jpeg'" alt="Foto del empleado">
@@ -46,6 +51,4 @@
   </div>
 
   <button class="cerrar-sesion" (click)="cerrarSesion()">Cerrar sesión</button>
-
-
 </div>
