@@ -3,8 +3,13 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',  // Ruta principal para redirigir a los tabs
-    redirectTo: 'tabs/home',  // Redirige a los tabs, específicamente al tab home
+    redirectTo: 'login',  // Redirige a login si no hay sesión activa
     pathMatch: 'full',
+  },
+  {
+    path: 'login',  // Ruta de login
+    loadComponent: () =>
+      import('./login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'tabs',  // Carga el componente de los tabs

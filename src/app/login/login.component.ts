@@ -23,7 +23,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe(
       (result) => {
         console.log('Login successful', result);
-        this.router.navigate(['/home']); // Redirige a la página principal después del login exitoso
+        this.router.navigate(['/tabs/home']); // Redirige a la página principal después del login exitoso
       },
       (error) => {
         console.error('Login failed', error);
