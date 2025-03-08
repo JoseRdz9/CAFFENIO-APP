@@ -1,0 +1,137 @@
+<div class="container d-flex justify-content-center align-items-start flex-column" style="max-height: 90vh; overflow-y: hidden;">
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        {{ showPart1 ? 'Asignar Puesto' : 'Lista de Empleados' }}
+      </a>
+    </div>
+  </nav>
+
+  <div class="filter-toggle d-flex justify-content-center" style="position: absolute; top: 70px; z-index: 10; width: 100%;">
+    <div class="switch">
+      <input type="checkbox" id="viewSwitch" (change)="togglePart()">
+      <label class="slider round" for="viewSwitch"></label>
+    </div>
+  </div>
+
+  <div class="modal fade" id="employeeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Nuevo Empleado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="empNumber" class="form-label">Número de Empleado</label>
+              <input type="text" class="form-control" [(ngModel)]="newEmployee.id" name="empNumber">
+            </div>
+            <div class="mb-3">
+              <label for="empName" class="form-label">Nombre</label>
+              <input type="text" class="form-control" [(ngModel)]="newEmployee.name" name="empName">
+            </div>
+            <div class="mb-3">
+              <label for="empSurname" class="form-label">Apellido</label>
+              <input type="text" class="form-control" [(ngModel)]="newEmployee.surname" name="empSurname">
+            </div>
+            <div class="mb-3">
+              <label for="empPhone" class="form-label">Teléfono</label>
+              <input type="text" class="form-control" [(ngModel)]="newEmployee.phone" name="empPhone">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="addEmployee()" data-bs-dismiss="modal">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista 1: Agregar Empleado -->
+  <div *ngIf="!showPart1" class="content-container" style="margin-top: 120px; overflow-y: auto; max-height: 75vh; width: 100%;">
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#employeeModal">Agregar Empleado</button>
+    </div>
+
+    <!-- Contenedor de tarjetas centradas -->
+    <div class="d-flex justify-content-center flex-wrap">
+      <div *ngFor="let employee of employees" class="card my-3 mx-2" style="width: 18rem;">
+        <div class="card-body">
+          <!-- Nombre del empleado con etiqueta clara -->
+          <p class="card-text">
+            <strong>Nombre:</strong> 
+            <ng-container *ngIf="employee.isEditing">
+              <input type="text" class="form-control" [(ngModel)]="employee.name" name="empName" placeholder="Nombre">
+            </ng-container>
+            <ng-container *ngIf="!employee.isEditing">
+              {{ employee.name }} {{ employee.surname }}
+            </ng-container>
+          </p>
+
+          <!-- Apellido con etiqueta clara -->
+          <p class="card-text">
+            <strong>Apellido:</strong>
+            <ng-container *ngIf="employee.isEditing">
+              <input type="text" class="form-control" [(ngModel)]="employee.surname" name="empSurname" placeholder="Apellido">
+            </ng-container>
+            <ng-container *ngIf="!employee.isEditing">
+              {{ employee.surname }}
+            </ng-container>
+          </p>
+          
+          <!-- Número de empleado con etiqueta clara -->
+          <p class="card-text">
+            <strong>Número de Empleado:</strong> 
+            <ng-container *ngIf="employee.isEditing">
+              <input type="text" class="form-control" [(ngModel)]="employee.id" name="empNumber" placeholder="Número de Empleado">
+            </ng-container>
+            <ng-container *ngIf="!employee.isEditing">
+              {{ employee.id }}
+            </ng-container>
+          </p>
+
+          <!-- Teléfono con etiqueta clara -->
+          <p class="card-text">
+            <strong>Teléfono:</strong>
+            <ng-container *ngIf="employee.isEditing">
+              <input type="text" class="form-control" [(ngModel)]="employee.phone" name="empPhone" placeholder="Teléfono">
+            </ng-container>
+            <ng-container *ngIf="!employee.isEditing">
+              {{ employee.phone }}
+            </ng-container>
+          </p>
+
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-warning me-2" (click)="editEmployee(employee)" *ngIf="!employee.isEditing">Editar</button>
+            <button class="btn btn-success me-2" (click)="saveEmployee(employee)" *ngIf="employee.isEditing">Guardar</button>
+            <button class="btn btn-secondary ms-2" (click)="cancelEdit(employee)" *ngIf="employee.isEditing">Cancelar</button>
+            <button class="btn btn-danger ms-2" (click)="deleteEmployee(employee.id)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista 2: Asignar Horario -->
+  <div *ngIf="showPart1" class="content-container" style="margin-top: 120px; overflow-y: auto; max-height: 75vh; width: 100%;">
+    <div class="d-flex justify-content-center flex-wrap">
+      <div *ngFor="let employee of employees" class="card my-3 mx-2" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ employee.name }} {{ employee.surname }}
+          </h5>
+          <div *ngFor="let day of daysOfWeek">
+            <label>{{ day }}:</label>
+            <select [(ngModel)]="employee.schedule[day]" class="form-select">
+              <option *ngFor="let shift of shifts" [value]="shift">{{ shift }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

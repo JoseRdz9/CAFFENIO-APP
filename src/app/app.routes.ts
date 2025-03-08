@@ -39,5 +39,9 @@ export const routes: Routes = [
   {
     path: 'micuenta',
     loadComponent: () => import('./micuenta/micuenta.component').then(m => m.MicuentaComponent),
+  },
+  {
+    path: 'admin-control',
+    loadComponent: () => import('./admin-control/admin-control.component').then(m => m.AdminControlComponent ),
   }
 ];
