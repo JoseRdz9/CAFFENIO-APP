@@ -8,6 +8,9 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';  // Importar la base de datos
 import { environment } from './environments/environment';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+
 
 // Inicia la aplicación
 bootstrapApplication(AppComponent, {

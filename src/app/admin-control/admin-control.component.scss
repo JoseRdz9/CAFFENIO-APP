@@ -1,0 +1,168 @@
+/* Asegurarnos de que el body y html ocupen todo el espacio y no tengan márgenes */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Para evitar el desbordamiento horizontal */
+}
+
+/* Estilos para el contenedor principal */
+.container {
+  max-width: 100%;
+  padding: 0; /* Eliminar el padding predeterminado */
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #dc1436; /* Rojo */
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 999;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
+
+/* Estilos de los elementos dentro del navbar */
+.navbar .navbar-brand {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+}
+
+/* Contenedor del switch */
+.filter-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Espaciado entre el switch y el texto */
+  margin: 5px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Estilo del switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 34px;
+}
+
+/* Oculta el checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Estilo del slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+/* Botón del switch */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Estilo cuando está activado */
+.switch input:checked + .slider {
+  background-color: #dc1436;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(36px);
+}
+
+/* Redondeado extra */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+/* Texto de estado */
+.status-text {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+
+/* Asegurarse de que las tarjetas no desborden ni se corten */
+.card {
+  width: 100%;
+  max-width: 100%; /* Se asegura de que no haya desbordamiento */
+  overflow: hidden;
+}
+
+/* Ajuste para las tarjetas de empleados */
+.card-body {
+  word-wrap: break-word; /* Asegura que el texto largo no se desborde */
+}
+
+/* Modal */
+.modal-content {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+
+::ng-deep .modal-backdrop.show {
+  opacity: var(--bs-backdrop-opacity);
+  z-index: -1 !important;
+}
+
+::ng-deep .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Asegura que los elementos se acomoden verticalmente */
+  width: 100%;
+}
+
+::ng-deep .card {
+  width: 100%; /* Asegura que la tarjeta ocupe el 100% del contenedor disponible */
+  max-width: 350px; /* Limita el ancho de la tarjeta a 350px */
+  margin: 10px; /* Espacio entre las tarjetas */
+}
+
+::ng-deep .card-body {
+  word-wrap: break-word;
+  white-space: normal;
+  max-height: 100%; /* Asegura que el contenido dentro de la tarjeta no desborde */
+}
+
+::ng-deep .card-title, ::ng-deep .card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+::ng-deep .card-body select {
+  width: 100%;
+  max-width: 100%;
+}

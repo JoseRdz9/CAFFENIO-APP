@@ -2,24 +2,46 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',  // Redirige a login al inicio
-    pathMatch: 'full'
+    path: '',  // Ruta principal para redirigir a los tabs
+    redirectTo: 'login',  // Redirige a login si no hay sesión activa
+    pathMatch: 'full',
   },
   {
-    path: 'login',
-    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
+    path: 'login',  // Ruta de login
+    loadComponent: () =>
+      import('./login/login.component').then((m) => m.LoginComponent),
   },
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    path: 'tabs',  // Carga el componente de los tabs
+    loadComponent: () => import('./tabs/tabs.page').then((m) => m.TabsPage),
+    children: [
+      {
+        path: 'home', // Ruta para el tab home
+        loadComponent: () =>
+          import('./home/home.component').then((m) => m.HomeComponent),
+      },
+      {
+        path: 'micuenta', // Ruta para el tab micuenta
+        loadComponent: () =>
+          import('./micuenta/micuenta.component').then((m) => m.MicuentaComponent),
+      },
+      {
+        path: '',
+        redirectTo: 'home', // Redirige por defecto a 'home' en los tabs
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: 'revision-fechas',
-    loadComponent: () => import('./revision-fechas/revision-fechas.page').then(m => m.RevisionFechasPage)
+    loadComponent: () => import('./revision-fechas/revision-fechas.page').then(m => m.RevisionFechasPage),
   },
   {
     path: 'micuenta',
-    loadComponent: () => import('./micuenta/micuenta.component').then(m => m.MicuentaComponent)
+    loadComponent: () => import('./micuenta/micuenta.component').then(m => m.MicuentaComponent),
+  },
+  {
+    path: 'admin-control',
+    loadComponent: () => import('./admin-control/admin-control.component').then(m => m.AdminControlComponent ),
   }
 ];
