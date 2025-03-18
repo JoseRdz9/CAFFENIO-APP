@@ -9,5 +9,9 @@ export const routes: Routes = [
   {
     path: 'revision-fechas',
     loadComponent: () => import('./revision-fechas/revision-fechas.page').then(m => m.RevisionFechasPage)
+  },  {
+    path: 'tareas-pendientes',
+    loadComponent: () => import('./tareas-pendientes/tareas-pendientes.page').then( m => m.TareasPendientesPage)
   }
+
 ]

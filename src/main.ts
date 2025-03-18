@@ -7,6 +7,13 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';  // Importar la base de datos
 import { environment } from './environments/environment';
+import { addIcons } from 'ionicons';
+import {
+  checkmarkCircle,
+  checkmarkCircleOutline,
+  checkmarkDoneCircle,
+  checkmarkDoneCircleOutline
+} from 'ionicons/icons';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -17,4 +24,11 @@ bootstrapApplication(AppComponent, {
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase())  // Agregar la configuración de Realtime Database
   ],
+  
+});
+addIcons({
+  'checkmark-circle': checkmarkCircle,
+  'checkmark-circle-outline': checkmarkCircleOutline,
+  'checkmark-done-circle': checkmarkDoneCircle,
+  'checkmark-done-circle-outline': checkmarkDoneCircleOutline
 });
