@@ -30,9 +30,17 @@
     "@capacitor/status-bar": "7.0.0",
     "@ionic/angular": "^8.4.3",
     "@types/firebase": "^3.2.3",
+<<<<<<< HEAD
     "firebase": "^11.4.0",
+=======
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.8",
+    "firebase": "^11.2.0",
+>>>>>>> 92fdfbba95988698c0df2f9a8f03b2fd89f0c7c4
     "ionicons": "^7.0.0",
+    "ng2-charts": "^8.0.0",
     "rxjs": "~7.8.0",
+    "toastify-js": "^1.12.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
@@ -48,6 +56,7 @@
     "@angular/language-service": "^19.0.0",
     "@capacitor/cli": "7.0.1",
     "@ionic/angular-toolkit": "^12.0.0",
+    "@types/bootstrap": "^5.2.10",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",

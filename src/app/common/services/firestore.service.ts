@@ -13,6 +13,7 @@ export interface Product {
   tv: boolean;
   startDate: Date | Timestamp | string | null;
   endDate: Date | Timestamp | string | null;
+  section: string;
 }
 
 export interface Subtask {

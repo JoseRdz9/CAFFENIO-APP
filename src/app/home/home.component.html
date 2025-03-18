@@ -1,0 +1,16 @@
+<div class="home-container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1>Mis actividades</h1>
+  </nav>
+
+  <!-- Contenido de las tarjetas -->
+  <div class="cards-container">
+    <button *ngFor="let activity of activities$ | async"
+            class="card-button"
+            (click)="navigateTo(activity.route)">
+      <span class="card-title">{{ activity.nombre }}</span>
+      <span class="go-circle">IR</span>
+    </button>
+  </div>
+</div>
