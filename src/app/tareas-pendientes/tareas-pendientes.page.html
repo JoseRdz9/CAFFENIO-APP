@@ -1,0 +1,68 @@
+<ion-content>
+  <!-- Header -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Tareas Pendientes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Segmento para alternar entre tareas -->
+  <ion-segment [(ngModel)]="segmentValue">
+    <ion-segment-button value="pendientes">
+      <ion-label>Pendientes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completadas">
+      <ion-label>Completadas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Tareas Pendientes -->
+  <ion-list *ngIf="segmentValue === 'pendientes'">
+    <ion-card *ngFor="let task of pendingTasks" class="task-card">
+      <ion-card-header>
+        <ion-card-title>{{ task.name }}</ion-card-title>
+        <p class="subtitle">{{ task.category }}</p>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Lista de subtareas -->
+        <ion-list>
+          <ion-item *ngFor="let subtask of task.subtasks" class="subtask-item">
+            <ion-label>{{ subtask.name }}</ion-label>
+            <ion-checkbox [(ngModel)]="subtask.status" (ionChange)="toggleSubtaskStatus(task, subtask)">
+            </ion-checkbox>
+          </ion-item>
+        </ion-list>
+
+        <!-- Botón para marcar como completada -->
+        <ion-button class="complete-btn" expand="block" (click)="toggleTaskStatus(task)">
+          {{ task.status ? 'Marcar como Pendiente' : 'Marcar como Completada' }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <!-- Tareas Completadas -->
+  <ion-list *ngIf="segmentValue === 'completadas'">
+    <ion-card *ngFor="let task of completedTasks" class="task-card completed-task">
+      <ion-card-header>
+        <ion-card-title>{{ task.name }}</ion-card-title>
+        <p class="subtitle">{{ task.category }}</p>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Lista de subtareas -->
+        <ion-list>
+          <ion-item *ngFor="let subtask of task.subtasks" class="subtask-item">
+            <ion-label>{{ subtask.name }}</ion-label>
+            <ion-checkbox [(ngModel)]="subtask.status" (ionChange)="toggleSubtaskStatus(task, subtask)">
+            </ion-checkbox>
+          </ion-item>
+        </ion-list>
+
+        <!-- Botón para regresar a pendientes -->
+        <ion-button class="pending-btn" expand="block" (click)="toggleTaskStatus(task)">
+          {{ task.status ? 'Marcar como Pendiente' : 'Marcar como Completada' }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

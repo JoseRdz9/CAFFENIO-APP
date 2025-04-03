@@ -1,11 +1,12 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" style="background-color: white;">
-    <ion-tab-button tab="home">
+    <ion-tab-button tab="home" routerLink="/tabs/home">
       <img src="assets/icon/home.png" alt="Inicio" style="width: 24px; height: 24px;">
       <ion-label>Inicio</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="micuenta">
+    <!-- Botón de perfil con evento click para manejar la navegación en TS -->
+    <ion-tab-button tab="micuenta" (click)="goToMiCuenta()">
       <img src="assets/icon/profile.png" alt="Perfil" style="width: 24px; height: 24px;">
       <ion-label>Perfil</ion-label>
     </ion-tab-button>

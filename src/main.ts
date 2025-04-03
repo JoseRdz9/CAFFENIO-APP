@@ -23,4 +23,11 @@ bootstrapApplication(AppComponent, {
     provideDatabase(() => getDatabase()), // Configuración de Realtime Database
     provideAuth(() => getAuth()),         // Configuración de Firebase Authentication
   ],
+  
 });
+// addIcons({
+//   'checkmark-circle': checkmarkCircle,
+//   'checkmark-circle-outline': checkmarkCircleOutline,
+//   'checkmark-done-circle': checkmarkDoneCircle,
+//   'checkmark-done-circle-outline': checkmarkDoneCircleOutline
+// });

@@ -21,27 +21,27 @@ export const routes: Routes = [
           import('./home/home.component').then((m) => m.HomeComponent),
       },
       {
-        path: 'micuenta', // Ruta para el tab micuenta
-        loadComponent: () =>
-          import('./micuenta/micuenta.component').then((m) => m.MicuentaComponent),
-      },
-      {
-        path: '',
-        redirectTo: 'home', // Redirige por defecto a 'home' en los tabs
+        path: '',  // Redirige por defecto a 'home' en los tabs
+        redirectTo: 'home',
         pathMatch: 'full',
       },
     ],
+  },
+  {
+    path: 'micuenta', // Ruta fuera de los tabs para mostrar el componente de perfil sin los tabs
+    loadComponent: () => import('./micuenta/micuenta.component').then(m => m.MicuentaComponent),
   },
   {
     path: 'revision-fechas',
     loadComponent: () => import('./revision-fechas/revision-fechas.page').then(m => m.RevisionFechasPage),
   },
   {
-    path: 'micuenta',
-    loadComponent: () => import('./micuenta/micuenta.component').then(m => m.MicuentaComponent),
-  },
-  {
     path: 'admin-control',
     loadComponent: () => import('./admin-control/admin-control.component').then(m => m.AdminControlComponent ),
+  },
+  {
+    path: 'tareas-pendientes',
+    loadComponent: () => import('./tareas-pendientes/tareas-pendientes.page').then( m => m.TareasPendientesPage)
   }
 ];
+
