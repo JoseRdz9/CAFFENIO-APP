@@ -30,9 +30,13 @@
     "@capacitor/status-bar": "7.0.0",
     "@ionic/angular": "^8.4.3",
     "@types/firebase": "^3.2.3",
+<<<<<<< HEAD
+    "firebase": "^11.4.0",
+=======
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.8",
     "firebase": "^11.2.0",
+>>>>>>> 92fdfbba95988698c0df2f9a8f03b2fd89f0c7c4
     "ionicons": "^7.0.0",
     "ng2-charts": "^8.0.0",
     "rxjs": "~7.8.0",

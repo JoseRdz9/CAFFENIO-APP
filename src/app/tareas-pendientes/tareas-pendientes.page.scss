@@ -1,0 +1,162 @@
+/* 🌟 Estilos generales */
+ion-content {
+  --background: #fbfbfb; /* Marrón Caffenio */
+  padding: 15px;
+}
+
+/* 🔹 Header */
+ion-header ion-toolbar {
+  background: #D91438 !important; /* Rojo Caffenio */
+  color: white;
+}
+
+ion-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  color: white;
+}
+
+/* 🔹 Segmento para alternar entre tareas */
+ion-segment {
+  margin: 15px 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+ion-segment-button {
+  font-weight: bold;
+  color: #732F29;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+ion-segment-button::part(indicator) {
+  background: #D91438; /* Rojo Caffenio */
+}
+
+/* 🔹 Tarjetas de tareas */
+.task-card {
+  border-radius: 12px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  background: #F5E5D8; /* Color beige claro para contraste */
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 15px;
+  color: #732F29;
+}
+
+.task-card:hover {
+  transform: scale(1.02);
+}
+
+/* 🔹 Tarjetas completadas */
+.completed-task {
+  background: #90BF2A !important; /* Verde Caffenio */
+  color: white;
+}
+
+/* 🔹 Encabezado de la tarjeta */
+ion-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #E5C1A6;
+  background-color: #D91438; /* Rojo Caffenio */
+  color: white;
+}
+
+/* 🔹 Subtítulos */
+.subtitle {
+  font-size: 14px;
+  color: #F29727; /* Naranja Caffenio */
+  margin-top: 4px;
+}
+
+/* 🔹 Subtareas */
+.subtask-item {
+  font-size: 14px;
+  color: #732F29;
+  padding: 8px 12px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  border-left: 3px solid #F29727; /* Línea indicadora naranja */
+}
+
+.subtask-item:hover {
+  background: rgba(242, 151, 39, 0.1);
+  transform: scale(1.02);
+}
+
+/* 🔹 Botones */
+ion-button {
+  background-color: #90BF2A !important; /* Verde Caffenio */
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  color: white !important;
+}
+
+/* Botón para marcar como completada */
+.complete-btn {
+  --background: #90BF2A !important; /* Verde Caffenio */
+  --color: white;
+}
+
+.complete-btn:hover {
+  background-color: #7AA625 !important;
+}
+
+/* Botón para regresar a pendientes */
+.pending-btn {
+  --background: #F29727 !important; /* Naranja Caffenio */
+  --color: white;
+}
+
+.pending-btn:hover {
+  background: #D98420;
+}
+
+/* 🔹 Checkbox estilo Caffenio */
+ion-checkbox {
+  --size: 22px;
+  --border-radius: 6px;
+  background-color: #F5E5D8 !important;
+  --checkmark-color: black;
+  --border-color: #90BF2A; /* Verde Caffenio */
+  --border-width: 2px;
+}
+
+ion-checkbox::part(container) {
+  border-color: #90BF2A !important;
+  background: #F5E5D8;
+}
+
+ion-checkbox::part(mark) {
+  color: white !important;
+}
+
+ion-checkbox[checked] {
+  --background: #90BF2A !important;
+  --border-color: #90BF2A !important;
+}
+
+/* Ajustes adicionales */
+ion-card-content {
+  padding: 12px;
+  background-color: #F5E5D8; /* Beige claro */
+}
+
+ion-item {
+  --background: #F5E5D8;
+}
+
+ion-list {
+  background: #F5E5D8;
+}
