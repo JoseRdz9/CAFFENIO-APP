@@ -40,6 +40,14 @@
               <label for="empPhone" class="form-label">Teléfono</label>
               <input type="text" class="form-control" [(ngModel)]="newEmployee.phone" name="empPhone">
             </div>
+            <div class="mb-3">
+              <label for="empEmail" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" [(ngModel)]="newEmployee.email" name="empEmail">
+            </div>
+            <div class="mb-3">
+              <label for="empPassword" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" [(ngModel)]="newEmployee.password" name="empPassword">
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -48,7 +56,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  
 
   <!-- Vista 1: Agregar Empleado -->
   <div *ngIf="!showPart1" class="content-container" style="margin-top: 120px; overflow-y: auto; max-height: 75vh; width: 100%;">
@@ -67,7 +75,7 @@
               <input type="text" class="form-control" [(ngModel)]="employee.name" name="empName" placeholder="Nombre">
             </ng-container>
             <ng-container *ngIf="!employee.isEditing">
-              {{ employee.name }} {{ employee.surname }}
+              {{ employee.name }} 
             </ng-container>
           </p>
 
@@ -86,10 +94,10 @@
           <p class="card-text">
             <strong>Número de Empleado:</strong> 
             <ng-container *ngIf="employee.isEditing">
-              <input type="text" class="form-control" [(ngModel)]="employee.id" name="empNumber" placeholder="Número de Empleado">
+              <input type="text" class="form-control" [(ngModel)]="employee.noempleado" name="empNumber" placeholder="Número de Empleado">
             </ng-container>
             <ng-container *ngIf="!employee.isEditing">
-              {{ employee.id }}
+              {{ employee.noempleado }}
             </ng-container>
           </p>
 

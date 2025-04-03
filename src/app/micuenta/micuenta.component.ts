@@ -44,7 +44,7 @@ export class MicuentaComponent implements OnInit {
   }
 
   volverAInicio() {
-    this.router.navigate(['/']); // Redirigir a la ruta principal
+    this.router.navigate(['/tabs/home']); // Redirigir a la ruta principal
   }
 
   toggleModoClaro() {
